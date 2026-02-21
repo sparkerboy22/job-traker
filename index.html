@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Application Tracker</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="max-w-5xl mx-auto px-3 sm:px-4 py-4">
+
+  <!-- Title -->
+  <h1 class="text-2xl font-bold mb-4">
+    Job Application Tracker
+  </h1>
+
+  <!-- Dashboard -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total</p>
+      <p id="totalCount" class="text-xl font-bold">0</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Interview</p>
+      <p id="interviewCount"
+         class="text-xl font-bold text-green-600">0</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Rejected</p>
+      <p id="rejectedCount"
+         class="text-xl font-bold text-red-600">0</p>
+    </div>
+
+  </div>
+
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-3">
+
+    <h2 class="text-xl font-semibold">
+      Available Jobs
+    </h2>
+
+    <p id="tabCount" class="text-gray-500">
+      0 jobs
+    </p>
+
+  </div>
+
+
+  <!-- Tabs -->
+  <div class="flex gap-2 mb-4">
+
+    <button id="tabAll"
+      class="tabBtn activeTab"
+      onclick="switchTab('all')">
+      All
+    </button>
+
+    <button id="tabInterview"
+      class="tabBtn"
+      onclick="switchTab('interview')">
+      Interview
+    </button>
+
+    <button id="tabRejected"
+      class="tabBtn"
+      onclick="switchTab('rejected')">
+      Rejected
+    </button>
+
+  </div>
+
+
+  <!-- Jobs Container -->
+  <div id="jobContainer" class="space-y-4"></div>
+
+
+  <!-- Jobs Data in HTML -->
+  <template id="jobsData">
+
+    <div data-id="1"
+      data-company="Google"
+      data-position="Frontend Developer"
+      data-location="Dhaka"
+      data-type="Full-time"
+      data-salary="80000 BDT"
+       data-status="all"
+      data-description="Build modern web applications using React."
+      ></div>
+
+    <div data-id="2"
+      data-company="Microsoft"
+      data-position="Backend Developer"
+      data-location="Remote"
+      data-type="Full-time"
+      data-salary="90000 BDT"
+      data-description="Develop APIs using Node.js."
+      data-status="all"></div>
+
+    <div data-id="3"
+      data-company="Amazon"
+      data-position="UI Designer"
+      data-location="Chittagong"
+      data-type="Remote"
+      data-salary="60000 BDT"
+      data-description="Design modern UI systems."
+      data-status="all"></div>
+
+    <div data-id="4"
+      data-company="Tesla"
+      data-position="Software Engineer"
+      data-location="Dhaka"
+      data-type="Full-time"
+      data-salary="100000 BDT"
+      data-description="Build scalable systems."
+      data-status="all"></div>
+
+    <div data-id="5"
+      data-company="Facebook"
+      data-position="React Developer"
+      data-location="Remote"
+      data-type="Contract"
+      data-salary="70000 BDT"
+      data-description="Develop React applications."
+      data-status="all"></div>
+
+    <div data-id="6"
+      data-company="Netflix"
+      data-position="Full Stack Developer"
+      data-location="Dhaka"
+      data-type="Full-time"
+      data-salary="95000 BDT"
+      data-description="Work on frontend and backend."
+      data-status="all"></div>
+
+    <div data-id="7"
+      data-company="Spotify"
+      data-position="JavaScript Developer"
+      data-location="Remote"
+      data-type="Remote"
+      data-salary="85000 BDT"
+      data-description="Build interactive features."
+      data-status="all"></div>
+
+    <div data-id="8"
+      data-company="Apple"
+      data-position="Web Developer"
+      data-location="Dhaka"
+      data-type="Full-time"
+      data-salary="110000 BDT"
+      data-description="Create modern websites."
+      data-status="all"></div>
+
+  </template>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
