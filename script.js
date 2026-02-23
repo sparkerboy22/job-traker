@@ -42,9 +42,9 @@ function renderJobs() {
           <p class="job-position">${job.position}</p>
           <div class="job-meta">
             <span>${job.location}</span>
-            <span>·</span>
+            <span>-</span>
             <span>${job.type}</span>
-            <span>·</span>
+            <span>-</span>
             <span class="salary">${job.salary}</span>
           </div>
         </div>
