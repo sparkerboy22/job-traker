@@ -1,267 +1,104 @@
+
 let jobs = [];
 
-// Load jobs from HTML template
-const template =
-document.getElementById("jobsData");
-
-let elements =
-template.content.children;
-
-for(let el of elements){
-
+const template = document.getElementById("jobsData");
+for (let el of template.content.children) {
   jobs.push({
-
-    id:Number(el.dataset.id),
-    company:el.dataset.company,
-    position:el.dataset.position,
-    location:el.dataset.location,
-    type:el.dataset.type,
-    salary:el.dataset.salary,
-    description:el.dataset.description,
-    status:el.dataset.status
-
+    id:          Number(el.dataset.id),
+    company:     el.dataset.company,
+    position:    el.dataset.position,
+    location:    el.dataset.location,
+    type:        el.dataset.type.trim(),
+    salary:      el.dataset.salary.trim(),
+    description: el.dataset.description,
+    status:      el.dataset.status
   });
-
 }
 
+let currentTab = "all";
 
-let currentTab="all";
+function renderJobs() {
+  const container = document.getElementById("jobContainer");
+  const filtered = currentTab === "all" ? jobs : jobs.filter(j => j.status === currentTab);
 
+  document.getElementById("tabCount").innerText = filtered.length + " jobs";
 
-// Render Jobs
-function renderJobs(){
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+      <img src="jobs.png"
+       class="w-20 mx-auto mb-3">
+        <p>No jobs available</p>
+        <p>There are no jobs in this section</p>
+      </div>`;
+    return;
+  }
 
-const container =
-document.getElementById("jobContainer");
+  container.innerHTML = filtered.map(job => `
+    <div class="job-card">
+      <div class="job-card-header">
+        <div class="job-info">
+          <p class="job-company">${job.company}</p>
+          <p class="job-position">${job.position}</p>
+          <div class="job-meta">
+            <span>${job.location}</span>
+            <span>·</span>
+            <span>${job.type}</span>
+            <span>·</span>
+            <span class="salary">${job.salary}</span>
+          </div>
+        </div>
+        <button class="delete-btn" onclick="deleteJob(${job.id})">Delete</button>
+      </div>
 
-let filteredJobs;
+      <span class="status-badge ${
+        job.status === 'interview' ? 'interview' :
+        job.status === 'rejected'  ? 'rejected'  : 'not-selected'
+      }">
+        ${job.status === 'all' ? 'Not Selected' : capitalize(job.status)}
+      </span>
 
-if(currentTab==="all"){
-filteredJobs=jobs;
-}
-else{
-filteredJobs=
-jobs.filter(job=>
-job.status===currentTab);
-}
+      <p class="job-description">${job.description}</p>
 
-
-// Update tab count
-document.getElementById("tabCount").innerText =
-filteredJobs.length + " jobs";
-
-
-// Empty state
-if(filteredJobs.length===0){
-
-container.innerHTML=`
-
-<div class="bg-white p-10 text-center rounded shadow">
-
-<img src="jobs.png"
-class="w-20 mx-auto mb-3">
-
-<p class="font-semibold">
-No jobs available
-</p>
-
-<p class="text-gray-500 text-sm">
-There are no jobs in this section
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-// Render Cards
-container.innerHTML =
-filteredJobs.map(job=>`
-
-<div class="bg-white p-4 rounded shadow">
-
-<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-
-<div>
-
-<h3 class="font-bold">
-${job.company}
-</h3>
-
-<p class="text-gray-500">${job.position}</p> 
-<br>
-<div class="flex">
-<p class="text-gray-500 text-sm">
-${job.location}
-</p> -  
- <p class="text-gray-500"> ${job.type}</p> - 
-   ${job.salary}</p>
-</div>
-
-
-</div>
-
-<button onclick="deleteJob(${job.id})"
-class="text-red-500 font-bold">
-Delete
-</button>
-
-</div>
-
-
-<div class="mt-2 text-sm space-y-1">
-
-<p class="font-semibold mt-1">
-
-<span class="${
-job.status==="interview"
-? "bg-green-600 text-white p-2"
-: job.status==="rejected"
-? "bg-red-600 text-white p-2"
-: "bg-gray-200 p-2"
-}">
-
-${
-job.status==="all"
-? "Not Selected"
-: capitalize(job.status)
+      <div class="job-actions">
+        <button class="btn-interview ${job.status === 'interview' ? 'active' : ''}"
+                onclick="setStatus(${job.id}, 'interview')">Interview</button>
+        <button class="btn-rejected ${job.status === 'rejected' ? 'active' : ''}"
+                onclick="setStatus(${job.id}, 'rejected')">Rejected</button>
+      </div>
+    </div>
+  `).join("");
 }
 
-</span>
-
-</p>
-<br>
-<p>${job.description}</p>
-
-
-</div>
-
-
-<div class="flex flex-col sm:flex-row gap-2 mt-3">
-
-<button
-onclick="setStatus(${job.id},'interview')"
-class="px-3 py-1 text-white rounded
-${job.status==="interview"
-? "bg-green-700"
-: "bg-green-500"}">
-
-Interview
-
-</button>
-
-
-<button
-onclick="setStatus(${job.id},'rejected')"
-class="px-3 py-1 text-white rounded
-${job.status==="rejected"
-? "bg-red-700"
-: "bg-red-500"}">
-
-Rejected
-
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
+function setStatus(id, status) {
+  jobs = jobs.map(job => {
+    if (job.id === id) job.status = job.status === status ? "all" : status;
+    return job;
+  });
+  updateCounts();
+  renderJobs();
 }
 
-
-
-// Set Status
-function setStatus(id,status){
-
-jobs = jobs.map(job=>{
-
-if(job.id===id){
-
-if(job.status===status){
-job.status="all";
-}
-else{
-job.status=status;
+function deleteJob(id) {
+  jobs = jobs.filter(j => j.id !== id);
+  updateCounts();
+  renderJobs();
 }
 
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("activeTab"));
+  document.getElementById("tab" + capitalize(tab)).classList.add("activeTab");
+  renderJobs();
 }
 
-return job;
-
-});
-
-updateCounts();
-renderJobs();
-
+function updateCounts() {
+  document.getElementById("totalCount").innerText = jobs.length;
+  document.getElementById("interviewCount").innerText = jobs.filter(j => j.status === "interview").length;
+  document.getElementById("rejectedCount").innerText = jobs.filter(j => j.status === "rejected").length;
 }
 
+function capitalize(w) { return w.charAt(0).toUpperCase() + w.slice(1); }
 
-// Delete Job
-function deleteJob(id){
-
-jobs =
-jobs.filter(job=>
-job.id!==id);
-
-updateCounts();
-renderJobs();
-
-}
-
-
-// Switch Tab
-function switchTab(tab){
-
-currentTab=tab;
-
-document.querySelectorAll(".tabBtn")
-.forEach(btn=>{
-btn.classList.remove("activeTab");
-});
-
-document.getElementById(
-"tab"+capitalize(tab)
-).classList.add("activeTab");
-
-renderJobs();
-
-}
-
-
-// Update Dashboard Counts
-function updateCounts(){
-
-document.getElementById("totalCount")
-.innerText=jobs.length;
-
-document.getElementById("interviewCount")
-.innerText=
-jobs.filter(job=>
-job.status==="interview").length;
-
-document.getElementById("rejectedCount")
-.innerText=
-jobs.filter(job=>
-job.status==="rejected").length;
-
-}
-
-
-// Capitalize
-function capitalize(word){
-
-return word.charAt(0).toUpperCase()
-+ word.slice(1);
-
-}
-
-
-// Initial Load
 updateCounts();
 renderJobs();

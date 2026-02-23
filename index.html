@@ -2,173 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
-  
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="bg-gray-100">
+<body>
 
-<div class="max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-4">
+<div class="page-wrapper">
 
- 
-  <h1 class="text-2xl font-bold mb-4">
-    Job Application Tracker
-  </h1>
-
-  
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-
-    <div class="bg-white p-4 rounded shadow">
-      <p class="text-gray-500">Total</p>
-      <p id="totalCount" class="text-xl font-bold">0</p>
+  <h1 class="page-title">Job Application Tracker</h1>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <p class="stat-label">Total</p>
+      <p id="totalCount" class="stat-value">0</p>
     </div>
-
-    <div class="bg-white p-4 rounded shadow">
-      <p class="text-gray-500">Interview</p>
-      <p id="interviewCount"
-         class="text-xl font-bold text-green-600">0</p>
+    <div class="stat-card">
+      <p class="stat-label">Interview</p>
+      <p id="interviewCount" class="stat-value green">0</p>
     </div>
-
-    <div class="bg-white p-4 rounded shadow">
-      <p class="text-gray-500">Rejected</p>
-      <p id="rejectedCount"
-         class="text-xl font-bold text-red-600">0</p>
+    <div class="stat-card">
+      <p class="stat-label">Rejected</p>
+      <p id="rejectedCount" class="stat-value red">0</p>
     </div>
-
   </div>
 
-
-  
-  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-3">
-
-    <h2 class="text-xl font-semibold">
-      Available Jobs
-    </h2>
-
-    <p id="tabCount" class="text-gray-500">
-      0 jobs
-    </p>
-
+  <div class="section-header">
+    <h2 class="section-title">Available Jobs</h2>
+    <p id="tabCount" class="section-count">0 jobs</p>
   </div>
 
-
-  
-  <div class="flex flex-col sm:flex-row gap-2  mb-4">
-
-    <button id="tabAll"
-      class="tabBtn activeTab"
-      onclick="switchTab('all')">
-      All
-    </button>
-
-    <button id="tabInterview"
-      class="tabBtn"
-      onclick="switchTab('interview')">
-      Interview
-    </button>
-
-    <button id="tabRejected"
-      class="tabBtn"
-      onclick="switchTab('rejected')">
-      Rejected
-    </button>
-
+  <div class="tab-bar">
+    <button id="tabAll"       class="tabBtn activeTab" onclick="switchTab('all')">All</button>
+    <button id="tabInterview" class="tabBtn"           onclick="switchTab('interview')">Interview</button>
+    <button id="tabRejected"  class="tabBtn"           onclick="switchTab('rejected')">Rejected</button>
   </div>
 
+  <div id="jobContainer" class="job-list"></div>
 
-  
-  <div id="jobContainer" class="space-y-4"></div>
-
-
- 
   <template id="jobsData">
-
-    <div data-id="1"
-      data-company="Mobile First Cop"
-      data-position="React Native Developer"
-      data-location="Remote"
-      data-type="Full-time"
-      data-salary="$130,000 - $175,000"
-       data-status="all"
-      data-description="Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide."
-      ></div>
-
-    <div data-id="2"
-      data-company="WebFlow Agency"
-      data-position="Web Designer & Developer"
-      data-location="Los Angeles, CA"
-      data-type="Part-time"
-      data-salary="$80,000 - $120,000"
-      data-description="Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends."
-      data-status="all"></div>
-
-    <div data-id="3"
-      data-company="DataViz Solutions"
-      data-position="Data Visualization Specialist"
-      data-location="Boston, MA"
-      data-type="Full-time"
-      data-salary="$125,000 - $165,000"
-      data-description="Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.
-"
-      data-status="all"></div>
-
-    <div data-id="4"
-      data-company="CloudFirst Inc"
-      data-position="Backend Developer"
-      data-location="Seattle, WA"
-      data-type="Full-time"
-      data-salary="$140,000 - $190,000"
-      data-description="Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure. "
-      data-status="all"></div>
-
-    <div data-id="5"
-      data-company="Innovation Labs"
-      data-position="UI/UX Engineer"
-      data-location="Austin, TX"
-      data-type=" Full-time"
-      data-salary="$110,000 - $150,000"
-      data-description="Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required."
-      data-status="all"></div>
-
-    <div data-id="6"
-      data-company="MegaCorp Solutions"
-      data-position="JavaScript Developer"
-      data-location="Remote"
-      data-type="Full-time"
-      data-salary="$120,000 - $160,000"
-      data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."
-      data-status="all"></div>
-
-    <div data-id="7"
-      data-company="StartupXYZ"
-      data-position="Full Stack Engineer"
-      data-location="Remote"
-      data-type="Remote"
-      data-salary="$120,000 - $160,000"
-      data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."
-      data-status="all"></div>
-
-    <div data-id="8"
-      data-company="TechCorp Industries"
-      data-position="Senior Frontend Developer"
-      data-location="San Francisco, CA"
-      data-type="Full-time"
-      data-salary=" $130,000 - $175,000"
-      data-description="We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects."
-      data-status="all"></div>
-
+    <div data-id="1" data-company="Mobile First Cop" data-position="React Native Developer" data-location="Remote" data-type="Full-time" data-salary="$130,000 - $175,000" data-status="all" data-description="Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide."></div>
+    <div data-id="2" data-company="WebFlow Agency" data-position="Web Designer & Developer" data-location="Los Angeles, CA" data-type="Part-time" data-salary="$80,000 - $120,000" data-status="all" data-description="Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends."></div>
+    <div data-id="3" data-company="DataViz Solutions" data-position="Data Visualization Specialist" data-location="Boston, MA" data-type="Full-time" data-salary="$125,000 - $165,000" data-status="all" data-description="Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking."></div>
+    <div data-id="4" data-company="CloudFirst Inc" data-position="Backend Developer" data-location="Seattle, WA" data-type="Full-time" data-salary="$140,000 - $190,000" data-status="all" data-description="Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure."></div>
+    <div data-id="5" data-company="Innovation Labs" data-position="UI/UX Engineer" data-location="Austin, TX" data-type="Full-time" data-salary="$110,000 - $150,000" data-status="all" data-description="Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required."></div>
+    <div data-id="6" data-company="MegaCorp Solutions" data-position="JavaScript Developer" data-location="Remote" data-type="Full-time" data-salary="$120,000 - $160,000" data-status="all" data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."></div>
+    <div data-id="7" data-company="StartupXYZ" data-position="Full Stack Engineer" data-location="Remote" data-type="Remote" data-salary="$120,000 - $160,000" data-status="all" data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."></div>
+    <div data-id="8" data-company="TechCorp Industries" data-position="Senior Frontend Developer" data-location="San Francisco, CA" data-type="Full-time" data-salary="$130,000 - $175,000" data-status="all" data-description="We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects."></div>
   </template>
 
 </div>
 
-<script src="script.js"></script>
-
+<script src="./script.js"></script>
 </body>
 </html>
