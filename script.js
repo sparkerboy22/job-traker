@@ -4,7 +4,7 @@ let jobs = [];
 const template =
 document.getElementById("jobsData");
 
-const elements =
+let elements =
 template.content.children;
 
 for(let el of elements){
@@ -84,7 +84,7 @@ filteredJobs.map(job=>`
 
 <div class="bg-white p-4 rounded shadow">
 
-<div class="flex justify-between">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
 
 <div>
 
@@ -92,11 +92,16 @@ filteredJobs.map(job=>`
 ${job.company}
 </h3>
 
-<p>${job.position}</p>
-
+<p class="text-gray-500">${job.position}</p> 
+<br>
+<div class="flex">
 <p class="text-gray-500 text-sm">
 ${job.location}
-</p>
+</p> -  
+ <p class="text-gray-500"> ${job.type}</p> - 
+   ${job.salary}</p>
+</div>
+
 
 </div>
 
@@ -108,25 +113,16 @@ Delete
 </div>
 
 
-<div class="mt-2 text-sm">
-
-<p>Type: ${job.type}</p>
-
-<p>Salary: ${job.salary}</p>
-
-<p>${job.description}</p>
-
+<div class="mt-2 text-sm space-y-1">
 
 <p class="font-semibold mt-1">
 
-Status:
-
 <span class="${
 job.status==="interview"
-? "text-green-600"
+? "bg-green-600 text-white p-2"
 : job.status==="rejected"
-? "text-red-600"
-: "text-gray-500"
+? "bg-red-600 text-white p-2"
+: "bg-gray-200 p-2"
 }">
 
 ${
@@ -138,6 +134,9 @@ job.status==="all"
 </span>
 
 </p>
+<br>
+<p>${job.description}</p>
+
 
 </div>
 

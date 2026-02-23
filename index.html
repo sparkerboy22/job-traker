@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Job Application Tracker</title>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -13,7 +15,7 @@
 
 <body class="bg-gray-100">
 
-<div class="max-w-5xl mx-auto px-3 sm:px-4 py-4">
+<div class="max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-4">
 
  
   <h1 class="text-2xl font-bold mb-4">
@@ -43,8 +45,8 @@
   </div>
 
 
-  >
-  <div class="flex justify-between items-center mb-3">
+  
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-3">
 
     <h2 class="text-xl font-semibold">
       Available Jobs
@@ -58,7 +60,7 @@
 
 
   
-  <div class="flex gap-2 mb-4">
+  <div class="flex flex-col sm:flex-row gap-2  mb-4">
 
     <button id="tabAll"
       class="tabBtn activeTab"
@@ -89,76 +91,77 @@
   <template id="jobsData">
 
     <div data-id="1"
-      data-company="Google"
-      data-position="Frontend Developer"
-      data-location="Dhaka"
+      data-company="Mobile First Cop"
+      data-position="React Native Developer"
+      data-location="Remote"
       data-type="Full-time"
-      data-salary="80000 BDT"
+      data-salary="$130,000 - $175,000"
        data-status="all"
-      data-description="Build modern web applications using React."
+      data-description="Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide."
       ></div>
 
     <div data-id="2"
-      data-company="Microsoft"
-      data-position="Backend Developer"
-      data-location="Remote"
-      data-type="Full-time"
-      data-salary="90000 BDT"
-      data-description="Develop APIs using Node.js."
+      data-company="WebFlow Agency"
+      data-position="Web Designer & Developer"
+      data-location="Los Angeles, CA"
+      data-type="Part-time"
+      data-salary="$80,000 - $120,000"
+      data-description="Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends."
       data-status="all"></div>
 
     <div data-id="3"
-      data-company="Amazon"
-      data-position="UI Designer"
-      data-location="Chittagong"
-      data-type="Remote"
-      data-salary="60000 BDT"
-      data-description="Design modern UI systems."
+      data-company="DataViz Solutions"
+      data-position="Data Visualization Specialist"
+      data-location="Boston, MA"
+      data-type="Full-time"
+      data-salary="$125,000 - $165,000"
+      data-description="Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.
+"
       data-status="all"></div>
 
     <div data-id="4"
-      data-company="Tesla"
-      data-position="Software Engineer"
-      data-location="Dhaka"
+      data-company="CloudFirst Inc"
+      data-position="Backend Developer"
+      data-location="Seattle, WA"
       data-type="Full-time"
-      data-salary="100000 BDT"
-      data-description="Build scalable systems."
+      data-salary="$140,000 - $190,000"
+      data-description="Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure. "
       data-status="all"></div>
 
     <div data-id="5"
-      data-company="Facebook"
-      data-position="React Developer"
-      data-location="Remote"
-      data-type="Contract"
-      data-salary="70000 BDT"
-      data-description="Develop React applications."
+      data-company="Innovation Labs"
+      data-position="UI/UX Engineer"
+      data-location="Austin, TX"
+      data-type=" Full-time"
+      data-salary="$110,000 - $150,000"
+      data-description="Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required."
       data-status="all"></div>
 
     <div data-id="6"
-      data-company="Netflix"
-      data-position="Full Stack Developer"
-      data-location="Dhaka"
+      data-company="MegaCorp Solutions"
+      data-position="JavaScript Developer"
+      data-location="Remote"
       data-type="Full-time"
-      data-salary="95000 BDT"
-      data-description="Work on frontend and backend."
+      data-salary="$120,000 - $160,000"
+      data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."
       data-status="all"></div>
 
     <div data-id="7"
-      data-company="Spotify"
-      data-position="JavaScript Developer"
+      data-company="StartupXYZ"
+      data-position="Full Stack Engineer"
       data-location="Remote"
       data-type="Remote"
-      data-salary="85000 BDT"
-      data-description="Build interactive features."
+      data-salary="$120,000 - $160,000"
+      data-description="Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."
       data-status="all"></div>
 
     <div data-id="8"
-      data-company="Apple"
-      data-position="Web Developer"
-      data-location="Dhaka"
+      data-company="TechCorp Industries"
+      data-position="Senior Frontend Developer"
+      data-location="San Francisco, CA"
       data-type="Full-time"
-      data-salary="110000 BDT"
-      data-description="Create modern websites."
+      data-salary=" $130,000 - $175,000"
+      data-description="We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects."
       data-status="all"></div>
 
   </template>
