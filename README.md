@@ -3,8 +3,7 @@
    getElementsByClassName() -Elements by class
    querySelector()-First matching CSS selector
    querySelectorAll-All matching CSS selector
-
-   2. How do you create and insert a new element into the DOM?
+2.  How do you create and insert a new element into the DOM?  
       const p = document.createElement("p");
       p.innerText = "New paragraph";
       document.body.appendChild(p);
