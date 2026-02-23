@@ -27,7 +27,7 @@ function renderJobs() {
     container.innerHTML = `
       <div class="empty-state">
       <img src="jobs.png"
-       class="w-20 mx-auto mb-3">
+       class="w-25 mx-auto mb-3">
         <p>No jobs available</p>
         <p>There are no jobs in this section</p>
       </div>`;
