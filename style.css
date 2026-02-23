@@ -86,7 +86,10 @@
       background: #3b82f6;
       color: white;
     }
-
+    
+    #jobsdata{
+      gap: 15px;
+    }
     .job-list {
       display: flex;
       flex-direction: column;
